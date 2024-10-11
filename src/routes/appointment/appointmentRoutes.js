@@ -23,6 +23,7 @@ const {
   getAppointmentsForTodayWithScheduledStatus,
   getPatientsForTodayAppointmentWithScheduledStatus,
   getScheduledAppointmentsByPatientId,
+  getAllAppointmentsByPatientId,
 } = require("../../controllers/appointment/appointmentCtrl");
 
 // Add new appointment (Doctor creates an appointment for a patient)
@@ -73,6 +74,10 @@ router.get("/patient/:patientId/last-appointment", authMiddleware, getPatientLas
 // Get scheduled appointments by patient ID
 router.get('/scheduled/patient/:patientId', getScheduledAppointmentsByPatientId);
 
+// Get scheduled appointments by patient ID
+router.get('/all/patient/:patientId', getAllAppointmentsByPatientId);
+
+
 
 
 //Hansanie
@@ -80,7 +85,7 @@ router.post("/add", authMiddleware,  addAppointmentAndCompleteLastAppointment);
 router.get("/get-last/:patientId", authMiddleware, getLastAppointmentByPatientId);
 router.get("/get-last-scheduled/:patientId", authMiddleware, getLastScheduledAppointmentByPatientId);
 router.get("/get-all-today", authMiddleware, getAppointmentsForTodayWithScheduledStatus);
-router.get("/get-all-today/patients", authMiddleware, getPatientsForTodayAppointmentWithScheduledStatus);
+router.get("/get-all-today/patients",  getPatientsForTodayAppointmentWithScheduledStatus);
 
 
 module.exports = router;
